@@ -1,0 +1,2238 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="The official journal of TRIGENT-Orchestration and PROJECT:REI development, research, decisions, and verification.">
+  <meta name="theme-color" content="#ffffff">
+  <meta property="og:title" content="TRIGENT Blog">
+  <meta property="og:description" content="Development and research in progress, including the decisions and verification behind the work.">
+  <meta property="og:image" content="assets/3Agents_Hello.png">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="assets/trigent-logo-color.png">
+  <title>TRIGENT Blog | Development and research, in progress</title>
+  <style>
+    :root {
+      --ink: #111216;
+      --ink-soft: #34373d;
+      --muted: #686d76;
+      --paper: #ffffff;
+      --wash: #f6f7f8;
+      --line: #e2e5e9;
+      --line-strong: #cbd0d6;
+      --cyan: #00a4c7;
+      --orange: #f47700;
+      --violet: #8e4bd4;
+      --green: #149965;
+      --yellow: #dcae00;
+      --max: 1240px;
+      --header-h: 72px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--paper);
+    }
+
+    body {
+      margin: 0;
+      overflow-x: hidden;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: Inter, "Helvetica Neue", "Noto Sans JP", Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      letter-spacing: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body.menu-open {
+      overflow: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      color: inherit;
+      font: inherit;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    .skip-link {
+      position: fixed;
+      z-index: 1000;
+      top: 8px;
+      left: 8px;
+      padding: 10px 14px;
+      background: var(--ink);
+      color: white;
+      transform: translateY(-150%);
+      transition: transform 180ms ease;
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    .scroll-progress {
+      position: fixed;
+      z-index: 1001;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--cyan) 0 25%, var(--orange) 25% 50%, var(--violet) 50% 75%, var(--green) 75%);
+      transform: scaleX(0);
+      transform-origin: left;
+      pointer-events: none;
+    }
+
+    .site-header {
+      position: fixed;
+      z-index: 100;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: var(--header-h);
+      border-bottom: 1px solid rgba(17, 18, 22, 0.08);
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .header-inner,
+    .page-shell {
+      width: min(calc(100% - 48px), var(--max));
+      margin: 0 auto;
+    }
+
+    .header-inner {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .brand {
+      min-width: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      font-size: 14px;
+      font-weight: 720;
+      line-height: 1;
+    }
+
+    .brand img {
+      width: 34px;
+      height: 34px;
+      object-fit: contain;
+    }
+
+    .brand-name {
+      white-space: nowrap;
+    }
+
+    .desktop-nav {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      margin-left: auto;
+      font-size: 13px;
+      font-weight: 620;
+    }
+
+    .desktop-nav a {
+      position: relative;
+      padding: 8px 0;
+      color: var(--ink-soft);
+    }
+
+    .desktop-nav a::after {
+      position: absolute;
+      right: 0;
+      bottom: 2px;
+      left: 0;
+      height: 1px;
+      content: "";
+      background: var(--ink);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 200ms ease;
+    }
+
+    .desktop-nav a:hover::after,
+    .desktop-nav a:focus-visible::after,
+    .desktop-nav a.is-current::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .language-switcher {
+      position: relative;
+    }
+
+    .language-button,
+    .header-cta,
+    .menu-toggle {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--line-strong);
+      border-radius: 6px;
+      background: white;
+      cursor: pointer;
+    }
+
+    .language-button {
+      gap: 10px;
+      min-width: 126px;
+      padding: 0 13px;
+      font-size: 12px;
+      font-weight: 680;
+    }
+
+    .language-code {
+      border-left: 1px solid var(--line);
+      padding-left: 10px;
+      color: var(--muted);
+      font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: 9px;
+    }
+
+    .language-chevron {
+      font-size: 12px;
+      transition: transform 180ms ease;
+    }
+
+    .language-button[aria-expanded="true"] .language-chevron {
+      transform: rotate(180deg);
+    }
+
+    .language-menu {
+      position: absolute;
+      z-index: 120;
+      top: calc(100% + 9px);
+      right: 0;
+      width: 270px;
+      border: 1px solid var(--line-strong);
+      border-radius: 7px;
+      padding: 7px;
+      background: white;
+      box-shadow: 0 22px 48px rgba(17, 18, 22, 0.14);
+    }
+
+    .language-option {
+      width: 100%;
+      min-height: 46px;
+      display: grid;
+      grid-template-columns: 34px 1fr auto;
+      align-items: center;
+      gap: 10px;
+      border: 0;
+      border-radius: 5px;
+      padding: 0 10px;
+      background: transparent;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .language-option:hover,
+    .language-option:focus-visible {
+      background: var(--wash);
+    }
+
+    .language-option.is-current {
+      background: var(--ink);
+      color: white;
+    }
+
+    .language-option-code {
+      color: var(--muted);
+      font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: 9px;
+      font-weight: 760;
+    }
+
+    .language-option.is-current .language-option-code,
+    .language-option.is-current .language-option-state {
+      color: #c9cdd4;
+    }
+
+    .language-option-name {
+      font-size: 12px;
+      font-weight: 680;
+    }
+
+    .language-option-state {
+      color: var(--muted);
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .header-cta,
+    .action-button {
+      gap: 10px;
+      border-color: var(--ink);
+      padding: 0 18px;
+      background: var(--ink);
+      color: white;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1;
+      transition: transform 180ms ease, background 180ms ease;
+    }
+
+    .header-cta:hover,
+    .action-button:hover {
+      background: #2b2d32;
+      transform: translateY(-2px);
+    }
+
+    .button-arrow {
+      width: 18px;
+      height: 18px;
+      display: inline-grid;
+      place-items: center;
+      font-size: 15px;
+    }
+
+    .menu-toggle {
+      width: 44px;
+      margin-left: auto;
+      padding: 0;
+      display: none;
+    }
+
+    .menu-lines,
+    .menu-lines::before,
+    .menu-lines::after {
+      width: 20px;
+      height: 1px;
+      display: block;
+      background: var(--ink);
+      transition: transform 180ms ease, top 180ms ease;
+    }
+
+    .menu-lines {
+      position: relative;
+    }
+
+    .menu-lines::before,
+    .menu-lines::after {
+      position: absolute;
+      left: 0;
+      content: "";
+    }
+
+    .menu-lines::before {
+      top: -6px;
+    }
+
+    .menu-lines::after {
+      top: 6px;
+    }
+
+    .menu-open .menu-lines {
+      background: transparent;
+    }
+
+    .menu-open .menu-lines::before {
+      top: 0;
+      transform: rotate(45deg);
+    }
+
+    .menu-open .menu-lines::after {
+      top: 0;
+      transform: rotate(-45deg);
+    }
+
+    .mobile-nav {
+      position: fixed;
+      z-index: 90;
+      inset: var(--header-h) 0 0;
+      display: none;
+      align-content: start;
+      overflow-y: auto;
+      padding: 28px 20px 40px;
+      background: white;
+    }
+
+    .mobile-nav > a {
+      min-height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--line);
+      font-size: 19px;
+      font-weight: 650;
+    }
+
+    .mobile-language {
+      margin-top: 24px;
+      border-top: 1px solid var(--ink);
+      padding-top: 22px;
+    }
+
+    .mobile-language-title {
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 760;
+      text-transform: uppercase;
+    }
+
+    .mobile-language-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 7px;
+    }
+
+    .mobile-language-option {
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border: 1px solid var(--line);
+      border-radius: 5px;
+      padding: 0 10px;
+      background: white;
+      color: var(--muted);
+      font-size: 11px;
+      cursor: pointer;
+    }
+
+    .mobile-language-option.is-current {
+      border-color: var(--ink);
+      background: var(--ink);
+      color: white;
+    }
+
+    .menu-open .mobile-nav {
+      display: grid;
+    }
+
+    main {
+      min-width: 0;
+    }
+
+    .blog-index {
+      padding: 168px 0 120px;
+    }
+
+    .blog-intro {
+      display: grid;
+      grid-template-columns: minmax(0, 0.65fr) minmax(360px, 0.85fr);
+      gap: 90px;
+      align-items: end;
+      margin-bottom: 108px;
+    }
+
+    .eyebrow,
+    .section-label,
+    .post-category,
+    .article-kicker {
+      color: var(--muted);
+      font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: 10px;
+      font-weight: 760;
+      line-height: 1.5;
+      text-transform: uppercase;
+    }
+
+    .eyebrow {
+      margin: 0 0 24px;
+    }
+
+    .blog-intro h1 {
+      margin: 0;
+      font-size: 76px;
+      font-weight: 590;
+      line-height: 0.98;
+      letter-spacing: 0;
+    }
+
+    .blog-intro-copy {
+      max-width: 620px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 20px;
+      line-height: 1.85;
+      word-break: auto-phrase;
+      text-wrap: pretty;
+    }
+
+    .featured {
+      display: grid;
+      grid-template-columns: minmax(300px, 0.88fr) minmax(0, 1.12fr);
+      gap: 84px;
+      align-items: center;
+    }
+
+    .section-label {
+      display: block;
+      margin-bottom: 30px;
+    }
+
+    .featured-copy h2 {
+      max-width: 620px;
+      margin: 0;
+      font-size: 52px;
+      font-weight: 560;
+      line-height: 1.08;
+      letter-spacing: 0;
+      overflow-wrap: anywhere;
+      word-break: auto-phrase;
+      text-wrap: balance;
+    }
+
+    .post-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 20px;
+      margin-top: 28px;
+      color: var(--ink-soft);
+      font-size: 13px;
+    }
+
+    .post-meta span + span {
+      position: relative;
+    }
+
+    .post-meta span + span::before {
+      position: absolute;
+      top: 50%;
+      left: -11px;
+      width: 2px;
+      height: 2px;
+      border-radius: 50%;
+      content: "";
+      background: var(--line-strong);
+    }
+
+    .featured-excerpt {
+      max-width: 590px;
+      margin: 24px 0 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.85;
+      word-break: auto-phrase;
+      text-wrap: pretty;
+    }
+
+    .action-button {
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 30px;
+      border: 1px solid var(--ink);
+      border-radius: 6px;
+    }
+
+    .featured-media {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 16 / 10;
+      border: 1px solid var(--line-strong);
+      border-radius: 8px;
+      background: #111315;
+    }
+
+    .featured-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 700ms cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .featured-media:hover img {
+      transform: scale(1.018);
+    }
+
+    .archive {
+      margin-top: 108px;
+    }
+
+    .filter-tabs {
+      display: flex;
+      gap: 34px;
+      overflow-x: auto;
+      border-bottom: 1px solid var(--line);
+      scrollbar-width: none;
+    }
+
+    .filter-tabs::-webkit-scrollbar {
+      display: none;
+    }
+
+    .filter-tab {
+      position: relative;
+      min-height: 54px;
+      flex: 0 0 auto;
+      border: 0;
+      padding: 0 2px;
+      background: transparent;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 620;
+      cursor: pointer;
+    }
+
+    .filter-tab::after {
+      position: absolute;
+      right: 0;
+      bottom: -1px;
+      left: 0;
+      height: 2px;
+      content: "";
+      background: var(--cyan);
+      transform: scaleX(0);
+      transition: transform 180ms ease;
+    }
+
+    .filter-tab.is-current {
+      color: var(--ink);
+    }
+
+    .filter-tab.is-current::after {
+      transform: scaleX(1);
+    }
+
+    .archive-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 48px;
+      margin: 58px 0 24px;
+    }
+
+    .archive-heading h2 {
+      margin: 0;
+      font-size: 32px;
+      font-weight: 590;
+      line-height: 1.2;
+    }
+
+    .archive-heading p {
+      max-width: 580px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      text-align: right;
+      word-break: auto-phrase;
+      text-wrap: pretty;
+    }
+
+    .post-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      border-top: 1px solid var(--ink);
+    }
+
+    .post-card {
+      min-width: 0;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 190px;
+      gap: 34px;
+      min-height: 290px;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 30px;
+    }
+
+    .post-card:nth-child(even) {
+      border-right: 0;
+    }
+
+    .post-card:only-child {
+      grid-column: 1 / -1;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 0.72fr);
+      border-right: 0;
+    }
+
+    .post-card-copy {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .post-card h3 {
+      max-width: 580px;
+      margin: 28px 0 0;
+      font-size: 28px;
+      font-weight: 590;
+      line-height: 1.25;
+      overflow-wrap: anywhere;
+      word-break: auto-phrase;
+      text-wrap: balance;
+    }
+
+    .post-card-excerpt {
+      max-width: 660px;
+      margin: 16px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.8;
+      word-break: auto-phrase;
+      text-wrap: pretty;
+    }
+
+    .post-card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: auto;
+      padding-top: 24px;
+      font-size: 13px;
+      font-weight: 720;
+    }
+
+    .post-card-link span {
+      transition: transform 180ms ease;
+    }
+
+    .post-card-link:hover span {
+      transform: translateX(4px);
+    }
+
+    .post-card-media {
+      min-width: 0;
+      overflow: hidden;
+      aspect-ratio: 16 / 10;
+      align-self: start;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: var(--wash);
+    }
+
+    .post-card-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      transition: transform 600ms cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .post-card-media:hover img {
+      transform: scale(1.025);
+    }
+
+    .empty-state {
+      border-bottom: 1px solid var(--line);
+      padding: 74px 0;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .article-view {
+      padding: 150px 0 120px;
+    }
+
+    .article-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 680;
+    }
+
+    .article-back span {
+      transition: transform 180ms ease;
+    }
+
+    .article-back:hover span {
+      transform: translateX(-4px);
+    }
+
+    .article-header {
+      max-width: 1040px;
+      margin: 64px auto 0;
+      text-align: center;
+    }
+
+    .article-kicker {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+    }
+
+    .article-title {
+      margin: 26px 0 0;
+      font-size: 62px;
+      font-weight: 560;
+      line-height: 1.08;
+      letter-spacing: 0;
+      overflow-wrap: anywhere;
+      word-break: auto-phrase;
+      text-wrap: balance;
+    }
+
+    .article-author {
+      margin: 28px 0 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .article-hero {
+      overflow: hidden;
+      aspect-ratio: 16 / 8.5;
+      margin-top: 64px;
+      border: 1px solid var(--line-strong);
+      border-radius: 8px;
+      background: #111315;
+    }
+
+    .article-hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .article-layout {
+      display: grid;
+      grid-template-columns: 180px minmax(0, 760px) 180px;
+      gap: 42px;
+      justify-content: center;
+      margin-top: 76px;
+    }
+
+    .article-aside {
+      position: sticky;
+      top: 112px;
+      align-self: start;
+      border-top: 1px solid var(--ink);
+      padding-top: 16px;
+      color: var(--muted);
+      font-size: 10px;
+      line-height: 1.7;
+    }
+
+    .article-aside strong,
+    .article-aside span {
+      display: block;
+    }
+
+    .article-aside strong {
+      margin-top: 8px;
+      color: var(--ink);
+      font-size: 11px;
+      font-weight: 680;
+    }
+
+    .article-body {
+      min-width: 0;
+    }
+
+    .article-body .article-lead {
+      margin: 0 0 52px;
+      font-size: 24px;
+      font-weight: 540;
+      line-height: 1.75;
+      word-break: auto-phrase;
+      text-wrap: pretty;
+    }
+
+    .article-body h2 {
+      margin: 72px 0 24px;
+      font-size: 34px;
+      font-weight: 600;
+      line-height: 1.35;
+      word-break: auto-phrase;
+      text-wrap: balance;
+    }
+
+    .article-body p {
+      margin: 0 0 26px;
+      color: var(--ink-soft);
+      font-size: 17px;
+      line-height: 2;
+      word-break: auto-phrase;
+      text-wrap: pretty;
+    }
+
+    .article-body ul {
+      display: grid;
+      gap: 0;
+      margin: 34px 0 38px;
+      padding: 0;
+      border-top: 1px solid var(--ink);
+      list-style: none;
+    }
+
+    .article-body li {
+      position: relative;
+      border-bottom: 1px solid var(--line);
+      padding: 18px 12px 18px 30px;
+      color: var(--ink-soft);
+      font-size: 15px;
+      line-height: 1.75;
+    }
+
+    .article-body li::before {
+      position: absolute;
+      top: 28px;
+      left: 8px;
+      width: 6px;
+      height: 6px;
+      content: "";
+      background: var(--violet);
+    }
+
+    .article-body strong {
+      color: var(--ink);
+      font-weight: 720;
+    }
+
+    .research-figure {
+      overflow: hidden;
+      margin: 54px 0 58px;
+      border: 1px solid #2d3138;
+      border-radius: 8px;
+      background: #111315;
+      color: white;
+    }
+
+    .research-figure-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      border-bottom: 1px solid #30343b;
+      padding: 15px 18px;
+      color: #b5bac3;
+      font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: 9px;
+      line-height: 1.4;
+      text-transform: uppercase;
+    }
+
+    .research-figure-header span:last-child {
+      color: #767d89;
+      text-align: right;
+    }
+
+    .research-figure-title {
+      max-width: 620px;
+      margin: 0;
+      padding: 30px 30px 26px;
+      font-size: 30px;
+      font-weight: 570;
+      line-height: 1.25;
+      overflow-wrap: anywhere;
+      text-wrap: balance;
+    }
+
+    .research-conditions-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      border-top: 1px solid #30343b;
+    }
+
+    .research-condition {
+      position: relative;
+      min-width: 0;
+      min-height: 184px;
+      border-right: 1px solid #30343b;
+      border-bottom: 1px solid #30343b;
+      padding: 25px 26px 28px;
+    }
+
+    .research-condition:nth-child(even) {
+      border-right: 0;
+    }
+
+    .research-condition::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 42px;
+      height: 3px;
+      content: "";
+      background: var(--condition-accent, var(--cyan));
+    }
+
+    .research-condition:nth-child(2) {
+      --condition-accent: var(--orange);
+    }
+
+    .research-condition:nth-child(3) {
+      --condition-accent: #26b978;
+    }
+
+    .research-condition:nth-child(4) {
+      --condition-accent: var(--violet);
+    }
+
+    .research-condition-number,
+    .research-question-label {
+      display: block;
+      color: var(--condition-accent, var(--cyan));
+      font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: 9px;
+      line-height: 1.4;
+    }
+
+    .research-condition h3 {
+      margin: 24px 0 9px;
+      color: white;
+      font-size: 18px;
+      font-weight: 650;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+    }
+
+    .research-condition p {
+      margin: 0;
+      color: #aeb4be;
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .research-question {
+      display: grid;
+      grid-template-columns: 130px minmax(0, 1fr);
+      gap: 26px;
+      align-items: center;
+      padding: 24px 30px;
+    }
+
+    .research-question-label {
+      color: #f2c94c;
+    }
+
+    .research-question strong {
+      color: white;
+      font-size: 20px;
+      font-weight: 570;
+      line-height: 1.4;
+      overflow-wrap: anywhere;
+    }
+
+    .research-figure figcaption {
+      border-top: 1px solid #30343b;
+      padding: 17px 30px 20px;
+      color: #8f96a2;
+      font-size: 11px;
+      line-height: 1.7;
+    }
+
+    .research-figure--compact {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      margin: 0;
+      border: 0;
+      border-radius: 0;
+    }
+
+    .research-figure--compact .research-figure-header {
+      padding: 10px 12px;
+      font-size: 7px;
+    }
+
+    .research-figure--compact .research-figure-title {
+      padding: 17px 18px 14px;
+      font-size: 18px;
+    }
+
+    .research-figure--compact .research-conditions-grid {
+      flex: 1;
+    }
+
+    .research-figure--compact .research-condition {
+      min-height: 0;
+      padding: 13px 14px;
+    }
+
+    .research-figure--compact .research-condition::before {
+      width: 26px;
+      height: 2px;
+    }
+
+    .research-figure--compact .research-condition-number {
+      font-size: 7px;
+    }
+
+    .research-figure--compact .research-condition h3 {
+      margin: 12px 0 0;
+      font-size: 12px;
+    }
+
+    .research-figure--compact .research-condition p,
+    .research-figure--compact figcaption {
+      display: none;
+    }
+
+    .research-figure--compact .research-question {
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 12px;
+      padding: 11px 14px;
+    }
+
+    .research-figure--compact .research-question-label {
+      font-size: 7px;
+    }
+
+    .research-figure--compact .research-question strong {
+      font-size: 11px;
+    }
+
+    .research-figure--card .research-figure-header {
+      padding: 7px 8px;
+      font-size: 6px;
+    }
+
+    .research-figure--card .research-figure-header span:last-child,
+    .research-figure--card .research-figure-title,
+    .research-figure--card .research-question-label {
+      display: none;
+    }
+
+    .research-figure--card .research-condition {
+      padding: 9px 8px;
+    }
+
+    .research-figure--card .research-condition h3 {
+      margin-top: 8px;
+      font-size: 9px;
+      line-height: 1.25;
+    }
+
+    .research-figure--card .research-question {
+      display: block;
+      padding: 8px;
+      text-align: center;
+    }
+
+    .research-figure--card .research-question strong {
+      font-size: 8px;
+      line-height: 1.3;
+    }
+
+    .article-end {
+      display: grid;
+      grid-template-columns: minmax(260px, 0.72fr) minmax(0, 1.28fr);
+      gap: 70px;
+      align-items: center;
+      margin-top: 92px;
+      padding: 38px 42px;
+      background: var(--ink);
+      color: white;
+    }
+
+    .article-end h2 {
+      margin: 0;
+      font-size: 32px;
+      font-weight: 590;
+      line-height: 1.2;
+    }
+
+    .article-end p {
+      margin: 0;
+      color: #cdd1d8;
+      font-size: 14px;
+    }
+
+    .article-end-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .article-end-link {
+      min-height: 42px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid #4a4e56;
+      border-radius: 5px;
+      padding: 0 14px;
+      font-size: 12px;
+      font-weight: 680;
+    }
+
+    .article-end-link:first-child {
+      border-color: white;
+      background: white;
+      color: var(--ink);
+    }
+
+    .site-footer {
+      border-top: 1px solid var(--line);
+      padding: 30px 0;
+      background: white;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 700ms ease, transform 700ms cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1080px) {
+      .desktop-nav {
+        gap: 14px;
+        font-size: 12px;
+      }
+
+      .featured {
+        gap: 56px;
+      }
+
+      .featured-copy h2 {
+        font-size: 44px;
+      }
+
+      .article-layout {
+        grid-template-columns: 140px minmax(0, 720px);
+      }
+
+      .article-layout::after {
+        display: none;
+      }
+    }
+
+    @media (max-width: 980px) {
+      :root {
+        --header-h: 64px;
+      }
+
+      .header-inner,
+      .page-shell {
+        width: min(calc(100% - 32px), var(--max));
+      }
+
+      .desktop-nav,
+      .header-actions {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: inline-flex;
+      }
+
+      .blog-index {
+        padding: 126px 0 90px;
+      }
+
+      .blog-intro {
+        grid-template-columns: 1fr;
+        gap: 36px;
+        margin-bottom: 80px;
+      }
+
+      .blog-intro h1 {
+        font-size: 62px;
+      }
+
+      .blog-intro-copy {
+        max-width: 700px;
+      }
+
+      .featured {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .featured-media {
+        grid-row: 1;
+      }
+
+      .archive {
+        margin-top: 84px;
+      }
+
+      .archive-heading {
+        display: block;
+      }
+
+      .archive-heading p {
+        max-width: 620px;
+        margin-top: 18px;
+        text-align: left;
+      }
+
+      .post-list {
+        grid-template-columns: 1fr;
+      }
+
+      .post-card,
+      .post-card:only-child {
+        grid-column: auto;
+        grid-template-columns: minmax(0, 1fr) 220px;
+        border-right: 0;
+      }
+
+      .article-view {
+        padding: 116px 0 90px;
+      }
+
+      .article-header {
+        margin-top: 48px;
+      }
+
+      .article-title {
+        font-size: 50px;
+      }
+
+      .article-layout {
+        grid-template-columns: 1fr;
+        margin-top: 58px;
+      }
+
+      .article-aside {
+        position: static;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+      }
+
+      .article-end {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      body {
+        font-size: 15px;
+      }
+
+      .brand-name {
+        max-width: 230px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .mobile-language-list {
+        grid-template-columns: 1fr;
+      }
+
+      .blog-intro h1 {
+        font-size: 48px;
+      }
+
+      .blog-intro-copy {
+        font-size: 17px;
+      }
+
+      .featured-copy h2 {
+        font-size: 38px;
+      }
+
+      .featured-media {
+        aspect-ratio: 4 / 3;
+      }
+
+      .filter-tabs {
+        gap: 24px;
+      }
+
+      .archive-heading h2 {
+        font-size: 28px;
+      }
+
+      .post-card,
+      .post-card:only-child {
+        grid-template-columns: 1fr;
+        gap: 26px;
+        padding: 26px 0;
+      }
+
+      .post-card-media {
+        grid-row: 1;
+      }
+
+      .post-card h3 {
+        font-size: 25px;
+      }
+
+      .article-kicker {
+        flex-wrap: wrap;
+        gap: 8px 14px;
+      }
+
+      .article-title {
+        font-size: 40px;
+      }
+
+      .article-author {
+        font-size: 13px;
+      }
+
+      .article-hero {
+        aspect-ratio: 4 / 3;
+        margin-top: 44px;
+      }
+
+      .article-aside {
+        grid-template-columns: 1fr;
+      }
+
+      .article-body .article-lead {
+        margin-bottom: 44px;
+        font-size: 20px;
+      }
+
+      .article-body h2 {
+        margin-top: 58px;
+        font-size: 29px;
+      }
+
+      .article-body p {
+        font-size: 16px;
+        line-height: 1.95;
+      }
+
+      .research-figure {
+        margin: 44px 0 50px;
+      }
+
+      .research-figure-title {
+        padding: 24px 22px 22px;
+        font-size: 25px;
+      }
+
+      .research-condition {
+        padding: 22px;
+      }
+
+      .research-question {
+        grid-template-columns: 1fr;
+        gap: 9px;
+        padding: 22px;
+      }
+
+      .research-figure figcaption {
+        padding: 16px 22px 19px;
+      }
+
+      .article-end {
+        margin-top: 70px;
+        padding: 30px 24px;
+      }
+
+      .article-end h2 {
+        font-size: 28px;
+      }
+
+      .article-end-actions {
+        display: grid;
+      }
+
+      .article-end-link {
+        justify-content: center;
+      }
+
+      .footer-inner {
+        display: block;
+      }
+
+      .footer-links {
+        margin-top: 14px;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .research-figure-header {
+        align-items: flex-start;
+      }
+
+      .research-figure:not(.research-figure--compact) .research-conditions-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .research-figure:not(.research-figure--compact) .research-condition {
+        min-height: 0;
+        border-right: 0;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" id="skip-link" href="#main">本文へ移動</a>
+  <div class="scroll-progress" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" id="brand-link" href="landing.html" aria-label="TRIGENT-Orchestration トップへ">
+        <img src="assets/trigent-logo-color.png" alt="">
+        <span class="brand-name">TRIGENT-Orchestration</span>
+      </a>
+      <nav class="desktop-nav" id="desktop-nav" aria-label="Main navigation">
+        <a id="nav-orchestration" href="landing.html#orchestration">Orchestration</a>
+        <a id="nav-product" href="landing.html#product">Product</a>
+        <a id="nav-memory" href="landing.html#memory">Memory</a>
+        <a id="nav-safety" href="landing.html#safety">Safety</a>
+        <a id="nav-support" href="landing.html#support">Support</a>
+        <a id="nav-blog" class="is-current" href="blog.html">Blog</a>
+      </nav>
+      <div class="header-actions">
+        <div class="language-switcher">
+          <button class="language-button" id="language-button" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="language-menu">
+            <span id="language-label">Language</span>
+            <span class="language-code" id="language-code">EN</span>
+            <span class="language-chevron" aria-hidden="true">⌄</span>
+          </button>
+          <div class="language-menu" id="language-menu" aria-label="表示言語" hidden></div>
+        </div>
+        <a class="header-cta" id="header-github" href="https://github.com/Unliminal-Studios/TRIGENT-Orchestration" target="_blank" rel="noreferrer">
+          GitHub
+          <span class="button-arrow" aria-hidden="true">↗</span>
+        </a>
+      </div>
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobile-nav">
+        <span class="menu-lines" aria-hidden="true"></span>
+      </button>
+    </div>
+  </header>
+
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+    <a id="mobile-orchestration" href="landing.html#orchestration">Orchestration <span aria-hidden="true">→</span></a>
+    <a id="mobile-product" href="landing.html#product">Product <span aria-hidden="true">→</span></a>
+    <a id="mobile-memory" href="landing.html#memory">Memory <span aria-hidden="true">→</span></a>
+    <a id="mobile-safety" href="landing.html#safety">Safety <span aria-hidden="true">→</span></a>
+    <a id="mobile-support" href="landing.html#support">Support <span aria-hidden="true">→</span></a>
+    <a id="mobile-blog" href="blog.html">Blog <span aria-hidden="true">→</span></a>
+    <a id="mobile-github" href="https://github.com/Unliminal-Studios/TRIGENT-Orchestration" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+    <div class="mobile-language">
+      <p class="mobile-language-title" id="mobile-language-title">Language · 5 languages</p>
+      <div class="mobile-language-list" id="mobile-language-list"></div>
+    </div>
+  </nav>
+
+  <main id="main">
+    <section class="blog-index" id="blog-index">
+      <div class="page-shell">
+        <header class="blog-intro reveal">
+          <div>
+            <p class="eyebrow" id="blog-eyebrow">TRIGENT / Development &amp; research journal</p>
+            <h1 id="blog-heading">Blog</h1>
+          </div>
+          <p class="blog-intro-copy" id="blog-introduction"></p>
+        </header>
+
+        <section class="featured reveal" aria-labelledby="featured-title">
+          <div class="featured-copy">
+            <span class="section-label" id="featured-label">Featured</span>
+            <h2 id="featured-title"></h2>
+            <div class="post-meta" id="featured-meta"></div>
+            <p class="featured-excerpt" id="featured-excerpt"></p>
+            <a class="action-button" id="featured-link" href="#">
+              <span id="featured-link-label">記事を読む</span>
+              <span class="button-arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+          <a class="featured-media" id="featured-media-link" href="#" aria-label="">
+            <img id="featured-image" src="assets/3Agents_Hello.png" alt="">
+          </a>
+        </section>
+
+        <section class="archive" aria-labelledby="latest-heading">
+          <div class="filter-tabs" id="filter-tabs" role="tablist" aria-label="Blog categories"></div>
+          <div class="archive-heading reveal">
+            <h2 id="latest-heading">最新の記事</h2>
+            <p id="latest-note"></p>
+          </div>
+          <div class="post-list" id="post-list"></div>
+          <p class="empty-state" id="empty-state" hidden></p>
+        </section>
+      </div>
+    </section>
+
+    <article class="article-view" id="article-view" hidden>
+      <div class="page-shell">
+        <a class="article-back" id="article-back" href="blog.html">
+          <span aria-hidden="true">←</span>
+          <span id="article-back-label">Blog一覧へ戻る</span>
+        </a>
+
+        <header class="article-header">
+          <div class="article-kicker">
+            <span id="article-category"></span>
+            <time id="article-date" datetime=""></time>
+          </div>
+          <h1 class="article-title" id="article-title"></h1>
+          <p class="article-author" id="article-author"></p>
+        </header>
+
+        <div class="article-hero">
+          <img id="article-image" src="assets/3Agents_Hello.png" alt="">
+        </div>
+
+        <div class="article-layout">
+          <aside class="article-aside" aria-label="Article information">
+            <div>
+              <span id="article-written-by-label">執筆</span>
+              <strong id="article-aside-author"></strong>
+            </div>
+            <div>
+              <span id="article-reading-time"></span>
+              <strong>TRIGENT Blog</strong>
+            </div>
+          </aside>
+          <div class="article-body" id="article-body"></div>
+        </div>
+
+        <section class="article-end" aria-labelledby="article-end-title">
+          <h2 id="article-end-title">次の研究記録へ。</h2>
+          <div>
+            <p id="article-end-copy"></p>
+            <div class="article-end-actions">
+              <a class="article-end-link" id="support-link" href="landing.html#support">
+                <span id="support-link-label">研究を支援する</span>
+                <span aria-hidden="true">→</span>
+              </a>
+              <a class="article-end-link" id="article-github" href="https://github.com/Unliminal-Studios/TRIGENT-Orchestration" target="_blank" rel="noreferrer">
+                <span id="article-github-label">GitHubで確認</span>
+                <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="page-shell footer-inner">
+      <span id="footer-copy">© 2026 Unliminal Studios · TRIGENT Blog</span>
+      <div class="footer-links">
+        <a id="footer-product" href="landing.html#product">Product</a>
+        <a id="footer-support" href="landing.html#support">Support</a>
+        <a id="footer-github" href="https://github.com/Unliminal-Studios/TRIGENT-Orchestration" target="_blank" rel="noreferrer">GitHub</a>
+        <a id="footer-top" href="#main">ページ上部へ</a>
+      </div>
+    </div>
+  </footer>
+
+  <noscript>TRIGENT Blog requires JavaScript to display translated articles.</noscript>
+  <script src="blog-content.js"></script>
+  <script>
+    (() => {
+      const data = window.TRIGENT_BLOG_DATA;
+      if (!data || !data.locales || !Array.isArray(data.posts)) return;
+
+      const supportedLanguages = ["en", "ja", "de", "zh", "hi"].filter((key) => data.locales[key]);
+      const query = new URLSearchParams(window.location.search);
+      const storedLanguage = (() => {
+        try {
+          return window.localStorage.getItem("trigent-language");
+        } catch {
+          return null;
+        }
+      })();
+      const requestedLanguage = query.get("lang");
+      let language = supportedLanguages.includes(requestedLanguage)
+        ? requestedLanguage
+        : supportedLanguages.includes(storedLanguage)
+          ? storedLanguage
+          : "en";
+      let activeFilter = "all";
+
+      const progress = document.querySelector(".scroll-progress");
+      const menuToggle = document.getElementById("menu-toggle");
+      const mobileNav = document.getElementById("mobile-nav");
+      const languageButton = document.getElementById("language-button");
+      const languageMenu = document.getElementById("language-menu");
+      const mobileLanguageList = document.getElementById("mobile-language-list");
+      const blogIndex = document.getElementById("blog-index");
+      const articleView = document.getElementById("article-view");
+      const filterTabs = document.getElementById("filter-tabs");
+      const postList = document.getElementById("post-list");
+      const emptyState = document.getElementById("empty-state");
+      const articleBody = document.getElementById("article-body");
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      const text = (id, value) => {
+        const element = document.getElementById(id);
+        if (element) element.textContent = value;
+      };
+
+      const linkWithArrow = (id, label, arrow) => {
+        const link = document.getElementById(id);
+        if (!link) return;
+        link.replaceChildren(document.createTextNode(`${label} `));
+        const icon = document.createElement("span");
+        icon.className = "button-arrow";
+        icon.setAttribute("aria-hidden", "true");
+        icon.textContent = arrow;
+        link.append(icon);
+      };
+
+      const localeData = () => data.locales[language];
+      const ui = () => localeData().ui;
+      const postTranslation = (post) => post.translations[language] || post.translations.en;
+
+      const formatDate = (date) => new Intl.DateTimeFormat(localeData().meta.locale, {
+        year: "numeric",
+        month: "short",
+        day: "numeric"
+      }).format(new Date(`${date}T00:00:00`));
+
+      const localizedHref = (path) => {
+        const [base, hash = ""] = path.split("#");
+        const separator = base.includes("?") ? "&" : "?";
+        return `${base}${separator}lang=${language}${hash ? `#${hash}` : ""}`;
+      };
+
+      const setMenu = (open) => {
+        document.body.classList.toggle("menu-open", open);
+        menuToggle.setAttribute("aria-expanded", String(open));
+        menuToggle.setAttribute("aria-label", open ? ui().menuClose : ui().menuOpen);
+      };
+
+      const setLanguageMenu = (open) => {
+        languageMenu.hidden = !open;
+        languageButton.setAttribute("aria-expanded", String(open));
+      };
+
+      const renderLanguageOptions = () => {
+        languageMenu.replaceChildren();
+        mobileLanguageList.replaceChildren();
+
+        supportedLanguages.forEach((key) => {
+          const locale = data.locales[key];
+          const isCurrent = key === language;
+
+          const desktopOption = document.createElement("button");
+          desktopOption.className = `language-option${isCurrent ? " is-current" : ""}`;
+          desktopOption.type = "button";
+          desktopOption.dataset.lang = key;
+          desktopOption.setAttribute("aria-current", String(isCurrent));
+
+          const desktopCode = document.createElement("span");
+          desktopCode.className = "language-option-code";
+          desktopCode.textContent = locale.meta.code;
+
+          const desktopName = document.createElement("span");
+          desktopName.className = "language-option-name";
+          desktopName.textContent = locale.meta.name;
+
+          const desktopState = document.createElement("span");
+          desktopState.className = "language-option-state";
+          desktopState.textContent = isCurrent ? ui().current : "";
+
+          desktopOption.append(desktopCode, desktopName, desktopState);
+          languageMenu.append(desktopOption);
+
+          const mobileOption = document.createElement("button");
+          mobileOption.className = `mobile-language-option${isCurrent ? " is-current" : ""}`;
+          mobileOption.type = "button";
+          mobileOption.dataset.lang = key;
+          mobileOption.setAttribute("aria-current", String(isCurrent));
+
+          const mobileName = document.createElement("span");
+          mobileName.textContent = locale.meta.name;
+          const mobileCode = document.createElement("small");
+          mobileCode.textContent = locale.meta.code;
+          mobileOption.append(mobileName, mobileCode);
+          mobileLanguageList.append(mobileOption);
+        });
+      };
+
+      const applyStaticTranslations = () => {
+        const current = ui();
+        const meta = localeData().meta;
+
+        document.documentElement.lang = language;
+        document.title = current.pageTitle;
+        document.querySelector('meta[name="description"]').setAttribute("content", current.pageDescription);
+        document.querySelector('meta[property="og:description"]').setAttribute("content", current.pageDescription);
+
+        text("skip-link", current.skip);
+        document.getElementById("brand-link").setAttribute("aria-label", current.brandAria);
+        text("nav-orchestration", current.nav.orchestration);
+        text("nav-product", current.nav.product);
+        text("nav-memory", current.nav.memory);
+        text("nav-safety", current.nav.safety);
+        text("nav-support", current.nav.support);
+        text("nav-blog", current.nav.blog);
+        text("language-label", current.language);
+        text("language-code", meta.code);
+        languageMenu.setAttribute("aria-label", current.languageMenu);
+        linkWithArrow("header-github", current.nav.github, "↗");
+
+        const mobileLinks = [
+          ["mobile-orchestration", current.nav.orchestration, "→"],
+          ["mobile-product", current.nav.product, "→"],
+          ["mobile-memory", current.nav.memory, "→"],
+          ["mobile-safety", current.nav.safety, "→"],
+          ["mobile-support", current.nav.support, "→"],
+          ["mobile-blog", current.nav.blog, "→"],
+          ["mobile-github", current.nav.github, "↗"]
+        ];
+        mobileLinks.forEach(([id, label, arrow]) => {
+          const link = document.getElementById(id);
+          link.replaceChildren(document.createTextNode(`${label} `));
+          const icon = document.createElement("span");
+          icon.setAttribute("aria-hidden", "true");
+          icon.textContent = arrow;
+          link.append(icon);
+        });
+
+        text("mobile-language-title", `${current.language} · 5 languages`);
+        text("blog-eyebrow", current.eyebrow);
+        text("blog-heading", current.heading);
+        text("blog-introduction", current.introduction);
+        text("featured-label", current.featured);
+        text("featured-link-label", current.readArticle);
+        text("latest-heading", current.latest);
+        text("latest-note", current.latestNote);
+        text("empty-state", current.empty);
+        text("article-back-label", current.back);
+        text("article-written-by-label", current.writtenBy);
+        text("article-end-title", current.articleEnd);
+        text("article-end-copy", current.articleEndCopy);
+        text("support-link-label", current.supportResearch);
+        text("article-github-label", current.viewGithub);
+        text("footer-copy", current.footer);
+        text("footer-product", current.nav.product);
+        text("footer-support", current.nav.support);
+        text("footer-github", current.nav.github);
+        text("footer-top", current.backToTop);
+        menuToggle.setAttribute("aria-label", document.body.classList.contains("menu-open") ? current.menuClose : current.menuOpen);
+
+        document.getElementById("nav-blog").href = localizedHref("blog.html");
+        document.getElementById("mobile-blog").href = localizedHref("blog.html");
+        document.getElementById("article-back").href = localizedHref("blog.html");
+        document.getElementById("brand-link").href = localizedHref("landing.html");
+        document.getElementById("nav-orchestration").href = localizedHref("landing.html#orchestration");
+        document.getElementById("nav-product").href = localizedHref("landing.html#product");
+        document.getElementById("nav-memory").href = localizedHref("landing.html#memory");
+        document.getElementById("nav-safety").href = localizedHref("landing.html#safety");
+        document.getElementById("nav-support").href = localizedHref("landing.html#support");
+        document.getElementById("mobile-orchestration").href = localizedHref("landing.html#orchestration");
+        document.getElementById("mobile-product").href = localizedHref("landing.html#product");
+        document.getElementById("mobile-memory").href = localizedHref("landing.html#memory");
+        document.getElementById("mobile-safety").href = localizedHref("landing.html#safety");
+        document.getElementById("mobile-support").href = localizedHref("landing.html#support");
+        document.getElementById("support-link").href = localizedHref("landing.html#support");
+        document.getElementById("footer-product").href = localizedHref("landing.html#product");
+        document.getElementById("footer-support").href = localizedHref("landing.html#support");
+      };
+
+      const createMeta = (post) => {
+        const wrapper = document.createDocumentFragment();
+        const date = document.createElement("span");
+        date.textContent = formatDate(post.date);
+        const category = document.createElement("span");
+        category.textContent = ui().categories[post.category];
+        const reading = document.createElement("span");
+        reading.textContent = `${post.readingMinutes} ${ui().minRead}`;
+        wrapper.append(date, category, reading);
+        return wrapper;
+      };
+
+      const appendRichText = (element, value) => {
+        String(value).split(/(\*\*[\s\S]+?\*\*)/g).filter(Boolean).forEach((part) => {
+          if (part.startsWith("**") && part.endsWith("**")) {
+            const strong = document.createElement("strong");
+            strong.textContent = part.slice(2, -2);
+            element.append(strong);
+            return;
+          }
+          element.append(document.createTextNode(part));
+        });
+      };
+
+      const createResearchFigure = (figureData, variant = "article") => {
+        const isCompact = variant !== "article";
+        const root = document.createElement(isCompact ? "div" : "figure");
+        root.className = `research-figure${isCompact ? ` research-figure--compact research-figure--${variant}` : ""}`;
+        root.setAttribute("aria-label", figureData.ariaLabel);
+
+        const header = document.createElement("div");
+        header.className = "research-figure-header";
+        const label = document.createElement("span");
+        label.textContent = "PROJECT:REI / FOUR CONDITIONS";
+        const note = document.createElement("span");
+        note.textContent = "PUBLIC RESEARCH NOTE 02";
+        header.append(label, note);
+
+        const title = document.createElement("h3");
+        title.className = "research-figure-title";
+        title.textContent = figureData.title;
+
+        const grid = document.createElement("div");
+        grid.className = "research-conditions-grid";
+        figureData.items.forEach((item) => {
+          const condition = document.createElement("section");
+          condition.className = "research-condition";
+          const number = document.createElement("span");
+          number.className = "research-condition-number";
+          number.textContent = item.number;
+          const conditionTitle = document.createElement("h3");
+          conditionTitle.textContent = item.title;
+          const copy = document.createElement("p");
+          copy.textContent = item.copy;
+          condition.append(number, conditionTitle, copy);
+          grid.append(condition);
+        });
+
+        const question = document.createElement("div");
+        question.className = "research-question";
+        const questionLabel = document.createElement("span");
+        questionLabel.className = "research-question-label";
+        questionLabel.textContent = figureData.centerLabel;
+        const questionText = document.createElement("strong");
+        questionText.textContent = figureData.center;
+        question.append(questionLabel, questionText);
+
+        root.append(header, title, grid, question);
+        if (!isCompact) {
+          const caption = document.createElement("figcaption");
+          caption.textContent = figureData.caption;
+          root.append(caption);
+        }
+        return root;
+      };
+
+      const renderPostVisual = (container, post, translation, variant) => {
+        container.replaceChildren();
+        if (post.visual === "four-conditions" && translation.figure) {
+          container.append(createResearchFigure(translation.figure, variant));
+          return;
+        }
+        const image = document.createElement("img");
+        image.src = variant === "card" ? (post.cardImage || post.image) : post.image;
+        image.alt = variant === "card" ? "" : translation.title;
+        container.append(image);
+      };
+
+      const renderFeatured = () => {
+        const post = data.posts[0];
+        const translation = postTranslation(post);
+        const href = `#${post.id}`;
+
+        text("featured-title", translation.title);
+        text("featured-excerpt", translation.excerpt);
+        document.getElementById("featured-meta").replaceChildren(createMeta(post));
+        document.getElementById("featured-link").href = href;
+        const media = document.getElementById("featured-media-link");
+        media.href = href;
+        media.setAttribute("aria-label", translation.title);
+        renderPostVisual(media, post, translation, "featured");
+      };
+
+      const renderFilters = () => {
+        const categories = ["all", ...new Set(data.posts.map((post) => post.category))];
+        filterTabs.replaceChildren();
+
+        categories.forEach((category) => {
+          const button = document.createElement("button");
+          const isCurrent = category === activeFilter;
+          button.className = `filter-tab${isCurrent ? " is-current" : ""}`;
+          button.type = "button";
+          button.setAttribute("role", "tab");
+          button.dataset.category = category;
+          button.setAttribute("aria-selected", String(isCurrent));
+          button.textContent = category === "all" ? ui().all : ui().categories[category];
+          filterTabs.append(button);
+        });
+      };
+
+      const renderPosts = () => {
+        const posts = activeFilter === "all"
+          ? data.posts
+          : data.posts.filter((post) => post.category === activeFilter);
+
+        postList.replaceChildren();
+        emptyState.hidden = posts.length > 0;
+
+        posts.forEach((post) => {
+          const translation = postTranslation(post);
+          const card = document.createElement("article");
+          card.className = "post-card reveal is-visible";
+
+          const copy = document.createElement("div");
+          copy.className = "post-card-copy";
+
+          const category = document.createElement("span");
+          category.className = "post-category";
+          category.textContent = `${formatDate(post.date)} / ${ui().categories[post.category]}`;
+
+          const title = document.createElement("h3");
+          title.textContent = translation.title;
+
+          const excerpt = document.createElement("p");
+          excerpt.className = "post-card-excerpt";
+          excerpt.textContent = translation.excerpt;
+
+          const link = document.createElement("a");
+          link.className = "post-card-link";
+          link.href = `#${post.id}`;
+          link.append(document.createTextNode(ui().readArticle));
+          const arrow = document.createElement("span");
+          arrow.setAttribute("aria-hidden", "true");
+          arrow.textContent = "→";
+          link.append(arrow);
+
+          const mediaLink = document.createElement("a");
+          mediaLink.className = "post-card-media";
+          mediaLink.href = `#${post.id}`;
+          mediaLink.setAttribute("aria-label", translation.title);
+          renderPostVisual(mediaLink, post, translation, "card");
+
+          copy.append(category, title, excerpt, link);
+          card.append(copy, mediaLink);
+          postList.append(card);
+        });
+      };
+
+      const renderArticleBody = (post) => {
+        const translation = postTranslation(post);
+        articleBody.replaceChildren();
+
+        translation.body.forEach((block) => {
+          if (block.type === "figure") {
+            if (translation.figure) articleBody.append(createResearchFigure(translation.figure));
+            return;
+          }
+
+          if (block.type === "list") {
+            const list = document.createElement("ul");
+            block.items.forEach((item) => {
+              const listItem = document.createElement("li");
+              appendRichText(listItem, item);
+              list.append(listItem);
+            });
+            articleBody.append(list);
+            return;
+          }
+
+          const element = document.createElement(block.type === "heading" ? "h2" : "p");
+          if (block.type === "lead") element.className = "article-lead";
+          appendRichText(element, block.text);
+          articleBody.append(element);
+        });
+      };
+
+      const renderArticle = (post) => {
+        const translation = postTranslation(post);
+        const date = formatDate(post.date);
+
+        text("article-category", ui().categories[post.category]);
+        text("article-date", date);
+        document.getElementById("article-date").dateTime = post.date;
+        let updated = document.getElementById("article-updated");
+        if (!updated) {
+          updated = document.createElement("span");
+          updated.id = "article-updated";
+          document.getElementById("article-date").after(updated);
+        }
+        updated.textContent = post.updatedDate ? ` · ${ui().updated} ${formatDate(post.updatedDate)}` : "";
+        text("article-title", translation.title);
+        text("article-author", translation.author);
+        text("article-aside-author", translation.author);
+        text("article-reading-time", `${post.readingMinutes} ${ui().minRead}`);
+        const hero = document.querySelector(".article-hero");
+        const image = document.getElementById("article-image");
+        const hasImage = Boolean(post.image);
+        hero.hidden = !hasImage;
+        if (hasImage) {
+          image.src = post.image;
+          image.alt = translation.title;
+        }
+        renderArticleBody(post);
+
+        document.title = `${translation.title} | TRIGENT Blog`;
+        document.querySelector('meta[name="description"]').setAttribute("content", translation.excerpt);
+        document.querySelector('meta[property="og:title"]').setAttribute("content", translation.title);
+        document.querySelector('meta[property="og:description"]').setAttribute("content", translation.excerpt);
+      };
+
+      const renderIndex = () => {
+        renderFeatured();
+        renderFilters();
+        renderPosts();
+        document.title = ui().pageTitle;
+        document.querySelector('meta[name="description"]').setAttribute("content", ui().pageDescription);
+        document.querySelector('meta[property="og:title"]').setAttribute("content", "TRIGENT Blog");
+        document.querySelector('meta[property="og:description"]').setAttribute("content", ui().pageDescription);
+      };
+
+      const renderRoute = ({ scroll = false } = {}) => {
+        const postId = window.location.hash.slice(1);
+        const post = data.posts.find((candidate) => candidate.id === postId);
+
+        if (post) {
+          blogIndex.hidden = true;
+          articleView.hidden = false;
+          renderArticle(post);
+        } else {
+          articleView.hidden = true;
+          blogIndex.hidden = false;
+          renderIndex();
+        }
+
+        if (scroll) window.scrollTo({ top: 0, behavior: prefersReducedMotion ? "auto" : "smooth" });
+      };
+
+      const setLanguage = (nextLanguage) => {
+        if (!supportedLanguages.includes(nextLanguage) || nextLanguage === language) {
+          setLanguageMenu(false);
+          setMenu(false);
+          return;
+        }
+
+        language = nextLanguage;
+        try {
+          window.localStorage.setItem("trigent-language", language);
+        } catch {
+          // The query parameter still preserves the selected language.
+        }
+
+        const url = new URL(window.location.href);
+        url.searchParams.set("lang", language);
+        window.history.replaceState({}, "", url);
+        applyStaticTranslations();
+        renderLanguageOptions();
+        renderRoute();
+        setLanguageMenu(false);
+        setMenu(false);
+      };
+
+      const updateScrollProgress = () => {
+        const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+        const ratio = scrollable > 0 ? Math.min(Math.max(window.scrollY / scrollable, 0), 1) : 0;
+        progress.style.transform = `scaleX(${ratio})`;
+      };
+
+      menuToggle.addEventListener("click", () => {
+        setLanguageMenu(false);
+        setMenu(!document.body.classList.contains("menu-open"));
+      });
+
+      languageButton.addEventListener("click", () => {
+        setLanguageMenu(languageButton.getAttribute("aria-expanded") !== "true");
+      });
+
+      document.addEventListener("click", (event) => {
+        const target = event.target instanceof Element ? event.target : null;
+        const languageOption = target?.closest("[data-lang]");
+        if (languageOption) {
+          setLanguage(languageOption.dataset.lang);
+          return;
+        }
+
+        const filter = target?.closest("[data-category]");
+        if (filter) {
+          activeFilter = filter.dataset.category;
+          renderFilters();
+          renderPosts();
+          return;
+        }
+
+        if (!target?.closest(".language-switcher")) setLanguageMenu(false);
+        if (target?.closest(".mobile-nav > a")) setMenu(false);
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key !== "Escape") return;
+        const languageWasOpen = languageButton.getAttribute("aria-expanded") === "true";
+        setLanguageMenu(false);
+        setMenu(false);
+        if (languageWasOpen) languageButton.focus();
+      });
+
+      window.addEventListener("hashchange", () => renderRoute({ scroll: true }));
+      window.addEventListener("scroll", updateScrollProgress, { passive: true });
+      window.addEventListener("resize", () => {
+        if (window.innerWidth > 980) setMenu(false);
+        setLanguageMenu(false);
+        updateScrollProgress();
+      });
+
+      applyStaticTranslations();
+      renderLanguageOptions();
+      renderRoute();
+      updateScrollProgress();
+
+      const revealItems = document.querySelectorAll(".reveal");
+      if (prefersReducedMotion || !("IntersectionObserver" in window)) {
+        revealItems.forEach((item) => item.classList.add("is-visible"));
+      } else {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          });
+        }, { threshold: 0.12 });
+        revealItems.forEach((item) => observer.observe(item));
+      }
+    })();
+  </script>
+</body>
+</html>
