@@ -375,8 +375,8 @@
     setText(".support-intro .section-kicker", copy.kicker);
     setHtml("#support-title", copy.titleHtml);
     setHtml(".support-message", copy.messageHtml);
-    setText(".support-actions .is-disabled", copy.sponsorPending);
-    setLinkLabel(one(".support-actions a"), copy.githubPolicy, "↗");
+    setLinkLabel(one(".support-actions .button-primary"), copy.sponsorCta, "↗");
+    setLinkLabel(one(".support-actions .button-secondary"), copy.githubPolicy, "↗");
     setText(".support-impact-heading h3", copy.impactHeading);
     setText(".support-impact-heading p", copy.impactCopy);
     setAttr(".support-metrics", "aria-label", copy.metricsAria);
