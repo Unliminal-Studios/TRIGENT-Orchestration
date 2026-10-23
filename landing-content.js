@@ -462,6 +462,28 @@ window.TRIGENT_LANDING_DATA = {
           ]
         ]
       },
+      "installation": {
+        "kicker": "Getting started",
+        "title": "TRIGENTの導入方法",
+        "notice": "VS Code・Antigravity・Cursorへの対応を予定しています。詳しい導入方法は、v1.0.0の公開後に掲載します。",
+        "editors": ["VS Code", "Antigravity", "Cursor"]
+      },
+      "acknowledgments": {
+        "kicker": "With thanks",
+        "title": "謝辞",
+        "items": [
+          {
+            "name": "Obsidian",
+            "copy": "Obsidianが公開したファイル形式「JSON Canvas」を、TRIGENT Canvasで採用しています。作った図をObsidianなどの対応アプリでも開ける、オープンな形式を提供してくださったことに感謝します。",
+            "linkLabel": "Obsidian公式サイト"
+          },
+          {
+            "name": "yomiyasu",
+            "copy": "nanaism氏が公開する、日本語の文章を読みやすく整えるためのスキルです。TRIGENTでは、その検査規則を日本語の返答のチェックに取り入れています。規則と推敲の指針を公開してくださったことに感謝します。",
+            "linkLabel": "yomiyasuのGitHubリポジトリ"
+          }
+        ]
+      },
       "support": {
         "kicker": "Support the lab",
         "titleHtml": "<span class=\"title-line nowrap\">TRIGENTは無料だ。</span><span class=\"title-line nowrap\">これからも無料だ。</span>",
@@ -1043,6 +1065,28 @@ window.TRIGENT_LANDING_DATA = {
             "Some details stay private so the research can continue.",
             "The core theory remains confidential while patent preparation is under way. Results that can be shared are delivered through TRIGENT; research that must be protected is handled responsibly."
           ]
+        ]
+      },
+      "installation": {
+        "kicker": "Getting started",
+        "title": "Getting started with TRIGENT",
+        "notice": "Support is planned for VS Code, Antigravity, and Cursor. Detailed installation instructions will be published after the v1.0.0 release.",
+        "editors": ["VS Code", "Antigravity", "Cursor"]
+      },
+      "acknowledgments": {
+        "kicker": "With thanks",
+        "title": "Acknowledgments",
+        "items": [
+          {
+            "name": "Obsidian",
+            "copy": "TRIGENT Canvas uses JSON Canvas, the open file format published by Obsidian. Thank you for providing a format that lets people open their diagrams in Obsidian and other compatible apps.",
+            "linkLabel": "Visit Obsidian"
+          },
+          {
+            "name": "yomiyasu",
+            "copy": "Created by nanaism, yomiyasu is a skill for making Japanese writing easier to read. TRIGENT incorporates its detection rules to check Japanese replies. Thank you for sharing those rules and the guidance on revising text.",
+            "linkLabel": "View yomiyasu on GitHub"
+          }
         ]
       },
       "support": {
@@ -1628,6 +1672,28 @@ window.TRIGENT_LANDING_DATA = {
           ]
         ]
       },
+      "installation": {
+        "kicker": "Erste Schritte",
+        "title": "TRIGENT installieren",
+        "notice": "Die Unterstützung für VS Code, Antigravity und Cursor ist geplant. Ausführliche Installationsanleitungen folgen nach der Veröffentlichung von v1.0.0.",
+        "editors": ["VS Code", "Antigravity", "Cursor"]
+      },
+      "acknowledgments": {
+        "kicker": "Mit Dank",
+        "title": "Danksagung",
+        "items": [
+          {
+            "name": "Obsidian",
+            "copy": "TRIGENT Canvas verwendet JSON Canvas, das von Obsidian veröffentlichte offene Dateiformat. Vielen Dank für ein Format, mit dem sich Diagramme auch in Obsidian und anderen kompatiblen Apps öffnen lassen.",
+            "linkLabel": "Zur Obsidian-Website"
+          },
+          {
+            "name": "yomiyasu",
+            "copy": "Der von nanaism entwickelte Skill yomiyasu macht japanische Texte leichter lesbar. TRIGENT nutzt seine Prüfregeln für japanische Antworten. Vielen Dank für die Veröffentlichung dieser Regeln und der Hinweise zur Textüberarbeitung.",
+            "linkLabel": "yomiyasu auf GitHub ansehen"
+          }
+        ]
+      },
       "support": {
         "kicker": "Support the lab",
         "titleHtml": "<span class=\"title-line\">TRIGENT ist kostenlos.</span><span class=\"title-line\">Und bleibt kostenlos.</span>",
@@ -2211,6 +2277,28 @@ window.TRIGENT_LANDING_DATA = {
           ]
         ]
       },
+      "installation": {
+        "kicker": "开始使用",
+        "title": "TRIGENT 安装指南",
+        "notice": "计划支持 VS Code、Antigravity 和 Cursor。详细安装方法将在 v1.0.0 发布后公布。",
+        "editors": ["VS Code", "Antigravity", "Cursor"]
+      },
+      "acknowledgments": {
+        "kicker": "致以感谢",
+        "title": "致谢",
+        "items": [
+          {
+            "name": "Obsidian",
+            "copy": "TRIGENT Canvas 采用 Obsidian 发布的开放文件格式 JSON Canvas。感谢 Obsidian 提供这种格式，让制作的图表也能在 Obsidian 等兼容应用中打开使用。",
+            "linkLabel": "访问 Obsidian 官网"
+          },
+          {
+            "name": "yomiyasu",
+            "copy": "yomiyasu 是 nanaism 发布的日语文本润色技能，旨在让文章更易读。TRIGENT 将其检测规则用于检查日语回复。感谢作者公开这些规则以及修改文章的指导方法。",
+            "linkLabel": "在 GitHub 查看 yomiyasu"
+          }
+        ]
+      },
       "support": {
         "kicker": "Support the lab",
         "titleHtml": "<span class=\"title-line\">TRIGENT 免费。</span><span class=\"title-line\">今后也会免费。</span>",
@@ -2792,6 +2880,28 @@ window.TRIGENT_LANDING_DATA = {
             "कुछ details इसलिए निजी हैं ताकि शोध रुक न जाए।",
             "Patent की तैयारी के दौरान core theory निजी है। सार्वजनिक किए जा सकने वाले परिणाम TRIGENT के रूप में आते हैं; जिस शोध को सुरक्षा चाहिए, उसे जिम्मेदारी से सुरक्षित रखा जाता है।"
           ]
+        ]
+      },
+      "installation": {
+        "kicker": "शुरुआत करें",
+        "title": "TRIGENT इंस्टॉल करने का तरीका",
+        "notice": "VS Code, Antigravity और Cursor के लिए समर्थन की योजना है। विस्तृत इंस्टॉलेशन निर्देश v1.0.0 रिलीज़ के बाद प्रकाशित किए जाएँगे।",
+        "editors": ["VS Code", "Antigravity", "Cursor"]
+      },
+      "acknowledgments": {
+        "kicker": "साभार",
+        "title": "आभार",
+        "items": [
+          {
+            "name": "Obsidian",
+            "copy": "TRIGENT Canvas, Obsidian के प्रकाशित खुले फ़ाइल फ़ॉर्मैट JSON Canvas का उपयोग करता है। ऐसा फ़ॉर्मैट उपलब्ध कराने के लिए धन्यवाद, जिससे बनाए गए आरेख Obsidian और अन्य संगत ऐप में भी खोले जा सकते हैं।",
+            "linkLabel": "Obsidian की वेबसाइट देखें"
+          },
+          {
+            "name": "yomiyasu",
+            "copy": "nanaism का बनाया yomiyasu जापानी लेखन को पढ़ने में आसान बनाने वाला स्किल है। TRIGENT जापानी जवाबों की जाँच में इसके नियमों का उपयोग करता है। इन नियमों और लेखन सुधारने के मार्गदर्शन को साझा करने के लिए धन्यवाद।",
+            "linkLabel": "GitHub पर yomiyasu देखें"
+          }
         ]
       },
       "support": {

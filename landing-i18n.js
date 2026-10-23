@@ -370,6 +370,26 @@
     });
   };
 
+  const applyInstallation = () => {
+    const copy = locale.installation;
+    setText("#installation .section-kicker", copy.kicker);
+    setText("#installation-title", copy.title);
+    setText(".installation-notice", copy.notice);
+    setTextList(".installation-editors li", copy.editors);
+  };
+
+  const applyAcknowledgments = () => {
+    const copy = locale.acknowledgments;
+    setText("#acknowledgments .section-kicker", copy.kicker);
+    setText("#acknowledgments-title", copy.title);
+    all(".acknowledgment-card").forEach((card, index) => {
+      const item = copy.items[index];
+      card.querySelector("h3").textContent = item.name;
+      card.querySelector("p").textContent = item.copy;
+      card.querySelector(".acknowledgment-link-label").textContent = item.linkLabel;
+    });
+  };
+
   const applySupport = () => {
     const copy = locale.support;
     setText(".support-intro .section-kicker", copy.kicker);
@@ -425,7 +445,9 @@
   applySafety();
   applyOriginality();
   applyResearch();
+  applyInstallation();
   applySupport();
+  applyAcknowledgments();
   applyCta();
   renderLanguageOptions();
 
