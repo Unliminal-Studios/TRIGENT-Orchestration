@@ -13,7 +13,8 @@ Authentication uses each provider’s official CLI. TRIGENT does not collect API
 Website: [https://unliminal-studios.github.io/TRIGENT-Orchestration/](https://unliminal-studios.github.io/TRIGENT-Orchestration/)  
 Blog: [https://unliminal-studios.github.io/TRIGENT-Orchestration/blog.html](https://unliminal-studios.github.io/TRIGENT-Orchestration/blog.html)
 
-GitHub Sponsors is under review; sponsorships are not yet being accepted through this repository.
+Sponsorships are open on GitHub Sponsors: [https://github.com/sponsors/RaylirMitsukami](https://github.com/sponsors/RaylirMitsukami)  
+Sponsoring never unlocks features. TRIGENT is free, and it will stay free.
 
 ## 日本語
 
@@ -26,4 +27,5 @@ TRIGENT-Orchestrationは、Codex・Claude Code・Gemini（Antigravity）の公�
 広報サイト：[https://unliminal-studios.github.io/TRIGENT-Orchestration/?lang=ja](https://unliminal-studios.github.io/TRIGENT-Orchestration/?lang=ja)  
 Blog：[https://unliminal-studios.github.io/TRIGENT-Orchestration/blog.html?lang=ja](https://unliminal-studios.github.io/TRIGENT-Orchestration/blog.html?lang=ja)
 
-GitHub Sponsorsは審査中のため、このリポジトリからの支援受付はまだ始めていません。
+GitHub Sponsorsで支援を受け付けています：[https://github.com/sponsors/RaylirMitsukami](https://github.com/sponsors/RaylirMitsukami)  
+支援は機能の解錠ではありません。TRIGENTは無料です。これからも無料です。
