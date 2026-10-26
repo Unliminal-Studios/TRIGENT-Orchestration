@@ -1,5 +1,6 @@
 // Public recognition only. No Sponsors API, payment data, or account tokens.
 // Add individuals and organizations to TRIGENT_LANDING_DATA.supporters.
+// Individuals use { github, displayName? }; identity and links always use github.
 // Organizations use { name, url, logo }; logos are approved local asset paths.
 (() => {
   const safeLink = value => {
@@ -25,7 +26,9 @@
         seen.add(identity);
         const href = individual ? `https://github.com/${name}` : safeLink(entry.url);
         const logo = !individual && typeof entry.logo === 'string' && /^assets\/[a-z\d_.@-]+\.(?:png|jpe?g|webp|svg)$/i.test(entry.logo) ? entry.logo : null;
-        result[key].push({ name: name.trim(), href, logo });
+        const displayName = individual && typeof entry.displayName === 'string' ? entry.displayName.trim() : '';
+        const label = displayName ? `${displayName}（${name}）` : name.trim();
+        result[key].push({ name: label, href, logo });
       }
     }
     return result;

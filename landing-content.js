@@ -1,6 +1,6 @@
 window.TRIGENT_LANDING_DATA = {
   "supporters": {
-    "individuals": [{ "github": "nanaism" }],
+    "individuals": [{ "github": "nanaism", "displayName": "大賀 愛一郎" }],
     "organizations": []
   },
   "locales": {
