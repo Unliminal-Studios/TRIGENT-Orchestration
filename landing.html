@@ -3452,38 +3452,146 @@
 
     .supporter-wall {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      border-top: 1px solid var(--ink);
-      border-left: 1px solid var(--line);
+      grid-template-columns: minmax(0, 1fr);
+      gap: 28px;
     }
 
     .supporter-tier {
-      min-height: 190px;
-      border-right: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-      padding: 24px;
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-top: 3px solid var(--tier-color);
+      border-radius: 12px;
+      padding: clamp(24px, 3vw, 38px);
       background: white;
+    }
+
+    .supporter-tier-header {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr);
+      align-items: center;
+      gap: 24px;
     }
 
     .supporter-tier-label {
       display: block;
-      color: var(--tier-color);
+      color: var(--muted);
       font-family: "SFMono-Regular", Consolas, monospace;
-      font-size: 9px;
+      font-size: 11px;
       font-weight: 760;
       text-transform: uppercase;
     }
 
     .supporter-tier h4 {
-      margin: 48px 0 8px;
-      font-size: 17px;
+      margin: 10px 0 0;
+      font-size: clamp(22px, 2.5vw, 28px);
       font-weight: 650;
+      line-height: 1.4;
+      overflow-wrap: anywhere;
     }
 
     .supporter-tier p {
       margin: 0;
       color: var(--muted);
-      font-size: 11px;
+      font-size: 14px;
+      line-height: 1.85;
+    }
+
+    .supporter-names,
+    .supporter-logos {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
+      gap: 16px;
+      margin: 28px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .supporter-names[hidden],
+    .supporter-logos[hidden],
+    .supporter-empty[hidden] {
+      display: none;
+    }
+
+    .supporter-names li,
+    .supporter-logos li {
+      min-width: 0;
+    }
+
+    .supporter-name {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 72px;
+      height: 100%;
+      padding: 20px 22px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--wash);
+      font-size: 18px;
+      font-weight: 650;
+      line-height: 1.5;
+    }
+
+    .supporter-name span:first-child,
+    .supporter-organization span {
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .supporter-name span[aria-hidden] {
+      flex: 0 0 auto;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .supporter-organization {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      min-height: 160px;
+      height: 100%;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: white;
+      text-align: center;
+      font-size: 16px;
+      font-weight: 650;
+      line-height: 1.6;
+    }
+
+    .supporter-organization img {
+      width: 100%;
+      max-width: 180px;
+      height: 64px;
+      object-fit: contain;
+    }
+
+    .supporter-organization img[hidden] {
+      display: none;
+    }
+
+    .supporter-name:hover,
+    a.supporter-organization:hover {
+      border-color: var(--line-strong);
+      background: var(--wash-deep);
+    }
+
+    .supporter-name:focus-visible,
+    a.supporter-organization:focus-visible {
+      outline: 2px solid var(--ink);
+      outline-offset: 4px;
+    }
+
+    .supporter-tier .supporter-empty {
+      margin-top: 28px;
+      padding: 24px;
+      border: 1px dashed var(--line-strong);
+      border-radius: 8px;
+      background: var(--wash);
     }
 
     .cta-section {
@@ -3909,9 +4017,13 @@
         text-align: left;
       }
 
-      .support-metrics,
-      .supporter-wall {
+      .support-metrics {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .supporter-tier-header {
+        grid-template-columns: 1fr;
+        gap: 16px;
       }
 
       .originality-context,
@@ -4353,8 +4465,7 @@
         min-height: 210px;
       }
 
-      .support-metrics,
-      .supporter-wall {
+      .support-metrics {
         grid-template-columns: 1fr;
       }
 
@@ -4376,10 +4487,6 @@
       .support-lifework-copy {
         padding-left: 20px;
         font-size: 16px;
-      }
-
-      .supporter-tier {
-        min-height: 165px;
       }
 
       .cta-main h2 {
@@ -5351,33 +5458,32 @@
         </div>
 
         <div class="supporter-heading reveal">
-          <h3>この研究室の壁に、名前を刻む。</h3>
-          <p>
-            支援者の名前は、TRIGENTの歩みを支えた証として残ります。
-            すべての支援者をREADMEのSpecial Thanksへ、Reipi・Astera・Irisの感謝とともに掲載します。
-          </p>
+          <h3>TRIGENTを支えてくださる皆さま。</h3>
+          <p>TRIGENTの開発とPROJECT:REIの研究へのご支援に感謝します。お名前は支援終了後も掲載を継続し、非掲載・削除のご希望に対応します。</p>
         </div>
         <div class="supporter-wall" aria-label="支援者掲載エリア">
-          <article class="supporter-tier reveal" style="--tier-color: var(--cyan)">
-            <span class="supporter-tier-label">Founding Patron</span>
-            <h4>最初期を支えた証</h4>
-            <p>サイトに永久掲載。研究室が動き始めた時代の名前を残します。</p>
-          </article>
-          <article class="supporter-tier reveal reveal-delay-1" style="--tier-color: var(--orange)">
-            <span class="supporter-tier-label">Patron</span>
-            <h4>継続を支える名前</h4>
-            <p>このページのSupportersエリアに掲載します。</p>
-          </article>
-          <article class="supporter-tier reveal reveal-delay-2" style="--tier-color: var(--violet)">
-            <span class="supporter-tier-label">Corporate</span>
-            <h4>企業・団体の支援</h4>
-            <p>組織名とロゴを、支援の記録として掲載します。</p>
-          </article>
-          <article class="supporter-tier reveal reveal-delay-3" style="--tier-color: var(--green)">
-            <span class="supporter-tier-label">Lab Supporters</span>
-            <h4>研究室を支える仲間</h4>
-            <p>支援者名を、3人からの感謝とともに刻みます。</p>
-          </article>
+          <section class="supporter-tier reveal" id="supporters-personal" aria-labelledby="supporters-personal-title" style="--tier-color: var(--cyan)">
+            <div class="supporter-tier-header">
+              <div>
+                <span class="supporter-tier-label">Research Supporters</span>
+                <h4 id="supporters-personal-title">研究を支える皆さま</h4>
+              </div>
+              <p class="supporter-tier-copy">ご支援いただいた方のお名前を、感謝とともに掲載しています。</p>
+            </div>
+            <ul class="supporter-names" data-supporter-list="individuals"><li><a class="supporter-name" href="https://github.com/nanaism" target="_blank" rel="noopener noreferrer"><span>nanaism</span><span aria-hidden="true">↗</span></a></li></ul>
+            <p class="supporter-empty" data-supporter-empty="individuals" hidden>ご支援いただいた方のお名前を、こちらに掲載します。</p>
+          </section>
+          <section class="supporter-tier reveal" id="supporters-corporate" aria-labelledby="supporters-corporate-title" style="--tier-color: var(--violet)">
+            <div class="supporter-tier-header">
+              <div>
+                <span class="supporter-tier-label">Corporate Sponsors</span>
+                <h4 id="supporters-corporate-title">企業・団体スポンサー</h4>
+              </div>
+              <p class="supporter-tier-copy">企業・団体のご支援を、組織名とロゴでご紹介します。</p>
+            </div>
+            <ul class="supporter-logos" data-supporter-list="organizations" hidden></ul>
+            <p class="supporter-empty" data-supporter-empty="organizations">企業・団体のスポンサーは、ご支援をいただき次第こちらに掲載します。</p>
+          </section>
         </div>
       </div>
     </section>
@@ -5474,6 +5580,7 @@
   </footer>
 
   <script src="landing-content.js"></script>
+  <script src="landing-supporters.js"></script>
   <script src="landing-i18n.js"></script>
   <script>
     (() => {

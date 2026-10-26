@@ -1,4 +1,8 @@
 window.TRIGENT_LANDING_DATA = {
+  "supporters": {
+    "individuals": [{ "github": "nanaism" }],
+    "organizations": []
+  },
   "locales": {
     "ja": {
       "meta": {
@@ -530,29 +534,21 @@ window.TRIGENT_LANDING_DATA = {
         "lifeworkLabel": "07 / The researcher",
         "lifeworkHeadingHtml": "この研究室の、<br>灯りを支える。",
         "lifeworkCopyHtml": "TRIGENTへの支援は、拡張機能の開発とPROJECT:REIの研究を続けるために役立てます。<b>一人の研究者が、この研究に人生を賭けられる環境</b>を支えます。",
-        "supporterHeading": "この研究室の壁に、名前を刻む。",
-        "supporterCopy": "支援者の名前は、TRIGENTの歩みを支えた証として残ります。すべての支援者をREADMEのSpecial Thanksへ、Reipi・Astera・Irisの感謝とともに掲載します。",
+        "supporterHeading": "TRIGENTを支えてくださる皆さま。",
+        "supporterCopy": "TRIGENTの開発とPROJECT:REIの研究へのご支援に感謝します。お名前は支援終了後も掲載を継続し、非掲載・削除のご希望に対応します。",
         "supporterAria": "支援者掲載エリア",
+        "personalEmpty": "ご支援いただいた方のお名前を、こちらに掲載します。",
+        "corporateEmpty": "企業・団体のスポンサーは、ご支援をいただき次第こちらに掲載します。",
         "tiers": [
           [
-            "Founding Patron",
-            "最初期を支えた証",
-            "サイトに永久掲載。研究室が動き始めた時代の名前を残します。"
+            "Research Supporters",
+            "研究を支える皆さま",
+            "ご支援いただいた方のお名前を、感謝とともに掲載しています。"
           ],
           [
-            "Patron",
-            "継続を支える名前",
-            "このページのSupportersエリアに掲載します。"
-          ],
-          [
-            "Corporate",
-            "企業・団体の支援",
-            "組織名とロゴを、支援の記録として掲載します。"
-          ],
-          [
-            "Lab Supporters",
-            "研究室を支える仲間",
-            "支援者名を、3人からの感謝とともに刻みます。"
+            "Corporate Sponsors",
+            "企業・団体スポンサー",
+            "企業・団体のご支援を、組織名とロゴでご紹介します。"
           ]
         ]
       },
@@ -1135,29 +1131,21 @@ window.TRIGENT_LANDING_DATA = {
         "lifeworkLabel": "07 / The researcher",
         "lifeworkHeadingHtml": "Keep the lights on<br>at this lab.",
         "lifeworkCopyHtml": "Support helps continue TRIGENT development and PROJECT:REI research. It sustains <b>an environment where one independent researcher can devote a life to this work</b>.",
-        "supporterHeading": "Put your name on the wall of this lab.",
-        "supporterCopy": "Supporters' names remain as part of TRIGENT's history. Every supporter will be listed in the README's Special Thanks, together with thanks from Reipi, Astera, and Iris.",
+        "supporterHeading": "The people supporting TRIGENT.",
+        "supporterCopy": "Thank you for supporting TRIGENT development and PROJECT:REI research. Names remain listed after sponsorship ends; requests not to be listed or to be removed are welcome.",
         "supporterAria": "Supporter recognition area",
+        "personalEmpty": "Supporters' names will be listed here as support is received.",
+        "corporateEmpty": "Corporate and organizational sponsors will be listed here as support is received.",
         "tiers": [
           [
-            "Founding Patron",
-            "Proof that you were there at the beginning",
-            "Permanent recognition on the site, preserving the names that supported the lab as it began."
+            "Research Supporters",
+            "Research Supporters",
+            "Recognizing our supporters by name, with gratitude for their support."
           ],
           [
-            "Patron",
-            "A name behind continued work",
-            "Recognition in the Supporters area of this page."
-          ],
-          [
-            "Corporate",
-            "Support from organizations",
-            "Your organization name and logo recorded as part of the project's support."
-          ],
-          [
-            "Lab Supporters",
-            "The people who sustain the lab",
-            "Your name recorded with thanks from all three agents."
+            "Corporate Sponsors",
+            "Corporate Sponsors",
+            "Recognizing support from companies and organizations by name and logo."
           ]
         ]
       },
@@ -1740,29 +1728,21 @@ window.TRIGENT_LANDING_DATA = {
         "lifeworkLabel": "07 / The researcher",
         "lifeworkHeadingHtml": "Das Licht dieses Labors<br>am Brennen halten.",
         "lifeworkCopyHtml": "Unterstützung hilft, TRIGENT und PROJECT:REI weiterzuentwickeln. Sie erhält <b>ein Umfeld, in dem ein unabhängiger Forscher sein Leben dieser Arbeit widmen kann</b>.",
-        "supporterHeading": "Ihren Namen an der Wand dieses Labors verewigen.",
-        "supporterCopy": "Die Namen der Unterstützenden bleiben als Teil der Geschichte von TRIGENT erhalten. Alle werden in den Special Thanks der README genannt, verbunden mit dem Dank von Reipi, Astera und Iris.",
+        "supporterHeading": "Die Menschen hinter TRIGENT.",
+        "supporterCopy": "Vielen Dank für die Unterstützung von TRIGENT und der Forschung von PROJECT:REI. Namen bleiben nach Ende der Förderung aufgeführt. Wünsche zur Nichtnennung oder Entfernung berücksichtigen wir gerne.",
         "supporterAria": "Bereich zur Würdigung von Unterstützenden",
+        "personalEmpty": "Hier nennen wir die Menschen, die das Projekt unterstützen.",
+        "corporateEmpty": "Unternehmen und Organisationen werden hier aufgeführt, sobald sie das Projekt unterstützen.",
         "tiers": [
           [
-            "Founding Patron",
-            "Zeichen Ihrer Unterstützung von Anfang an",
-            "Dauerhafte Nennung auf der Website für jene, die das Labor in seiner Anfangszeit getragen haben."
+            "Research Supporters",
+            "Förderer der Forschung",
+            "Hier nennen wir unsere Unterstützenden und danken ihnen für ihre Förderung."
           ],
           [
-            "Patron",
-            "Ein Name hinter der fortlaufenden Arbeit",
-            "Nennung im Supporters-Bereich dieser Seite."
-          ],
-          [
-            "Corporate",
-            "Unterstützung durch Organisationen",
-            "Name und Logo Ihrer Organisation als Teil der Fördergeschichte."
-          ],
-          [
-            "Lab Supporters",
-            "Menschen, die das Labor tragen",
-            "Ihr Name, festgehalten mit dem Dank aller drei Agenten."
+            "Corporate Sponsors",
+            "Unternehmenssponsoren",
+            "Unterstützende Unternehmen und Organisationen stellen wir mit Namen und Logo vor."
           ]
         ]
       },
@@ -2345,29 +2325,21 @@ window.TRIGENT_LANDING_DATA = {
         "lifeworkLabel": "07 / The researcher",
         "lifeworkHeadingHtml": "守住这间研究室的<br>灯光。",
         "lifeworkCopyHtml": "支持将用于持续开发 TRIGENT 并推进 PROJECT:REI 研究，帮助维持<b>一位独立研究者能够倾注人生于这项研究的环境</b>。",
-        "supporterHeading": "把你的名字，刻在这间研究室的墙上。",
-        "supporterCopy": "支持者的名字将作为推动 TRIGENT 前进的证明留下。每一位支持者都会进入 README 的 Special Thanks，并附上 Reipi、Astera、Iris 的感谢。",
+        "supporterHeading": "感谢支持 TRIGENT 的每一位。",
+        "supporterCopy": "感谢各位支持 TRIGENT 开发与 PROJECT:REI 研究。支持结束后仍会保留姓名；如不希望展示或希望删除，请告知我们。",
         "supporterAria": "支持者展示区域",
+        "personalEmpty": "收到支持后，我们会在这里列出支持者的名字。",
+        "corporateEmpty": "收到企业或组织的支持后，我们会在这里展示其名称与标志。",
         "tiers": [
           [
-            "Founding Patron",
-            "见证并支持最初阶段",
-            "在网站永久展示，留下研究室起步时代的名字。"
+            "Research Supporters",
+            "研究支持者",
+            "在这里列出支持者的名字，向各位表达感谢。"
           ],
           [
-            "Patron",
-            "推动持续工作的名字",
-            "展示在本页的 Supporters 区域。"
-          ],
-          [
-            "Corporate",
-            "来自组织的支持",
-            "以组织名称和标志记录这份支持。"
-          ],
-          [
-            "Lab Supporters",
-            "守护研究室的伙伴",
-            "把支持者姓名与三位智能体的感谢一起留下。"
+            "Corporate Sponsors",
+            "企业与组织赞助者",
+            "以名称与标志展示提供支持的企业和组织。"
           ]
         ]
       },
@@ -2950,29 +2922,21 @@ window.TRIGENT_LANDING_DATA = {
         "lifeworkLabel": "07 / The researcher",
         "lifeworkHeadingHtml": "इस प्रयोगशाला की<br>रोशनी बनाए रखें।",
         "lifeworkCopyHtml": "आपका सहयोग TRIGENT के विकास और PROJECT:REI के शोध को जारी रखने में मदद करता है। यह <b>एक स्वतंत्र शोधकर्ता को अपना जीवन इस काम में लगाने का वातावरण</b> बनाए रखता है।",
-        "supporterHeading": "इस प्रयोगशाला की दीवार पर अपना नाम छोड़ें।",
-        "supporterCopy": "Supporters के नाम TRIGENT की यात्रा के प्रमाण के रूप में रहेंगे। हर supporter को README के Special Thanks में Reipi, Astera और Iris की ओर से धन्यवाद के साथ शामिल किया जाएगा।",
+        "supporterHeading": "TRIGENT का साथ देने वाले लोग।",
+        "supporterCopy": "TRIGENT के विकास और PROJECT:REI के शोध में सहयोग के लिए धन्यवाद। सहयोग समाप्त होने के बाद भी नाम सूची में रहेगा। नाम न दिखाने या हटाने के लिए कृपया बताएँ।",
         "supporterAria": "Supporters को सम्मान देने का क्षेत्र",
+        "personalEmpty": "सहयोग मिलने पर समर्थकों के नाम यहाँ प्रकाशित किए जाएँगे।",
+        "corporateEmpty": "कंपनियों और संस्थाओं से सहयोग मिलने पर उनका नाम और लोगो यहाँ प्रकाशित किया जाएगा।",
         "tiers": [
           [
-            "Founding Patron",
-            "शुरुआत से साथ होने का प्रमाण",
-            "Site पर स्थायी उल्लेख, उस समय का नाम जब प्रयोगशाला ने काम शुरू किया।"
+            "Research Supporters",
+            "शोध के समर्थक",
+            "हम आभार के साथ अपने समर्थकों के नाम यहाँ प्रकाशित करते हैं।"
           ],
           [
-            "Patron",
-            "निरंतर काम के पीछे एक नाम",
-            "इस पृष्ठ के Supporters क्षेत्र में उल्लेख।"
-          ],
-          [
-            "Corporate",
-            "संस्थाओं का सहयोग",
-            "सहयोग के record में organization का नाम और logo।"
-          ],
-          [
-            "Lab Supporters",
-            "प्रयोगशाला को बनाए रखने वाले साथी",
-            "तीनों agents के धन्यवाद के साथ supporter का नाम।"
+            "Corporate Sponsors",
+            "कंपनी और संस्था प्रायोजक",
+            "सहयोग करने वाली कंपनियों और संस्थाओं का नाम और लोगो यहाँ दिखाया जाएगा।"
           ]
         ]
       },

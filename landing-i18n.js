@@ -419,8 +419,9 @@
       if (!values) return;
       item.querySelector(".supporter-tier-label").textContent = values[0];
       item.querySelector("h4").textContent = values[1];
-      item.querySelector("p").textContent = values[2];
+      item.querySelector(".supporter-tier-copy").textContent = values[2];
     });
+    window.TRIGENT_SUPPORTERS.render(data.supporters, copy);
   };
 
   const applyCta = () => {
